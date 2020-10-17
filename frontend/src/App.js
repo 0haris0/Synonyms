@@ -13,7 +13,7 @@ function App() {
           <SearchBar></SearchBar>
         </div>
       </div>
-      <div className="row">
+    {/*}  <div className="row">
         <div className="col-12">
           <button
             className="btn btn-secondary d-block float-right"
@@ -27,7 +27,7 @@ function App() {
             <AddSynonym></AddSynonym>
           </div>
           : null}
-      </div>
+        </div>{*/}
     </div>
   );
 }

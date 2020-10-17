@@ -1,0 +1,20 @@
+[
+    {
+        "ID": 1,
+        "word": "Wash",
+        "key": 1,
+        "synonyms" : ["Clean"]
+    },
+    {
+        "ID": 2,
+        "word": "Clean",
+        "key": 2,
+        "synonyms": ["Wash"]
+    },
+    {
+        "ID": 3,
+        "word": "Washing",
+        "key": 3,
+        "synonyms" : ["Cleaning"]
+    }
+]

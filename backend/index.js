@@ -1,37 +1,35 @@
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const port = 3001
+const data2 = require('./data/synonyms.json');
+const data = require('./data/data2.json');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://test:test123@synonyms.iawta.mongodb.net/synonyms_list?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useUnifiedTopology: true }, { useNewUrlParser: true }, { connectTimeoutMS: 30000 }, { keepAlive: 1 });
-
-async function searchSynonyms(wordString) {
-    try {
-        await client.connect();
-
-        const database = client.db('synonyms_list');
-        const collection = database.collection('Synonyms');
-        let query = { word: wordString };
-        let result = await collection.find(query).toArray();
-        return result;
-    } catch (e) {
-        console.error(e);
-    }
-}
-// perform actions on the collection object
+app.use(cors());
 
 app.get('/', (req, res, next) => {
     next();
 })
-
-app.get('/word/:search', (req, res) => {
-    searchSynonyms(req.params.search).then(function (resolve, reject) {
-        res.send(resolve);
-    });
+app.get('/word/', (req, res, next) => {
+    res.sendStatus(404);
+    next(); 
 });
 
-client.close();
+app.get('/word/:search', (req, res, next) => {
+    let result = [];
+    data.map((value)=>{
+        if(value.word.toUpperCase().includes(req.params.search.toUpperCase())){
+            result.push(value);
+        }
+    });
+    if(result.length > 0){
+        res.send(result);
+    }else{
+        res.send(result);
+    }   
+    next();
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

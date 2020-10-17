@@ -4,6 +4,7 @@
   "description": "Backend for Synonyms",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.2"
   },
@@ -11,6 +12,7 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
+    "start": "./node_modules/.bin/nodemon -w index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
