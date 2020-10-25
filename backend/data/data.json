@@ -1,18 +1,98 @@
 [
   {
-    "ID": 1,
-    "word": "Cleanin2g",
-    "key": 1,
+    "ID": 0,
+    "word": "Wash",
+    "key": 4,
     "synonyms": [
-      "Washing22136"
+      "Clean"
     ]
   },
   {
     "ID": 1,
-    "word": "Cleanin2g",
-    "key": 1,
+    "word": "Clean",
+    "key": 4,
     "synonyms": [
-      "Washing22136"
+      "Wash"
+    ]
+  },
+  {
+    "ID": 2,
+    "word": "Wash2",
+    "key": 4,
+    "synonyms": [
+      "Clean"
+    ]
+  },
+  {
+    "ID": 3,
+    "word": "Clean3",
+    "key": 4,
+    "synonyms": [
+      "Wash"
+    ]
+  },
+  {
+    "ID": 4,
+    "word": "Wash3",
+    "key": 4,
+    "synonyms": [
+      "Clean"
+    ]
+  },
+  {
+    "ID": 5,
+    "word": "Clean3",
+    "key": 4,
+    "synonyms": [
+      "Wash"
+    ]
+  },
+  {
+    "ID": 6,
+    "word": "Wash312",
+    "key": 4,
+    "synonyms": [
+      "Clean"
+    ]
+  },
+  {
+    "ID": 7,
+    "word": "Clean3",
+    "key": 4,
+    "synonyms": [
+      "Wash"
+    ]
+  },
+  {
+    "ID": 8,
+    "word": "1112Wash312",
+    "key": 4,
+    "synonyms": [
+      "Clean"
+    ]
+  },
+  {
+    "ID": 9,
+    "word": "Clean3",
+    "key": 4,
+    "synonyms": [
+      "Wash"
+    ]
+  },
+  {
+    "ID": 10,
+    "word": "1112Wash312",
+    "key": 4,
+    "synonyms": [
+      "Clean"
+    ]
+  },
+  {
+    "ID": 11,
+    "word": "Clean3",
+    "key": 4,
+    "synonyms": [
+      "Wash"
     ]
   }
 ]

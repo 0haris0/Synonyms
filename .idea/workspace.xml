@@ -6,12 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6558b866-e12b-44c6-8a20-160a7f6b6903" name="Default Changelist" comment="Added option to search synonyms">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Backend.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Backend.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Frontend.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Frontend.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/data/data2.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -516,7 +513,8 @@
       <workItem from="1603063450515" duration="1063000" />
       <workItem from="1603157716703" duration="3518000" />
       <workItem from="1603264704115" duration="828000" />
-      <workItem from="1603320734105" duration="36983000" />
+      <workItem from="1603320734105" duration="38762000" />
+      <workItem from="1603504632201" duration="9832000" />
     </task>
     <task id="LOCAL-00001" summary="Added option to search synonyms">
       <created>1602918014006</created>
@@ -525,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602918014006</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working on new function for adding">
+      <created>1603415350084</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603415350086</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +550,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added option to search synonyms" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added option to search synonyms" />
+    <MESSAGE value="Working on new function for adding" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on new function for adding" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,7 +559,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>vmscript://file://C:/Users/haris/Desktop/Projects/Synonyms/backend/index.js</url>
           <line>67</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

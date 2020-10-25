@@ -24,24 +24,42 @@ const isExisting = (Synonym) => {
     });
 }
 
-const Synonym = {
-    ID : null,
-    word : null,
-    key : null,
-    synonyms : [],
-    get ID(){
-        return Array.from(data).length;
-    },
-    set word(word) {
-        this.word = word;
-    },
-    set key(key) {
-        this.key = key
-    },
-    set synonyms(synonyms) {
-        this.synonyms.push(synonyms);
-    }
+const Synonym = (id, word, key, synonyms) => {
+    this.id = id;
+    this.word = word;
+    this.key = key;
+    this.synonyms = Array.of(synonyms);
+    let obj = new Object;
+    obj.ID = this.id;
+    obj.word = this.word;
+    obj.key = this.key;
+    obj.synonyms = this.synonyms;
+    return obj;
 };
+
+
+Object.defineProperties(Synonym, {
+    'ID': {
+        get: () => {
+            return Array.from(data).length
+        }
+    },
+    'word': {
+        get: () => {
+            return this.word
+        }
+    },
+    'key': {
+        get: () => {
+            return this.key
+        }
+    },
+    'synonyms': {
+        get: () => {
+            return Array.of(this.synonyms);
+        }
+    }
+})
 
 function fillSynonym(DataArray, FirstWord, SecondWord) {
     let synonym = {
@@ -159,18 +177,26 @@ app.post('/word/add/', (req, res,) => {
         });
 */
 
-    let firstWord = new Synonym("Wash", 3, "Clean");
-    let secondWord = new Synonym("Clean", 4, "Wash");
-    this.data = {
+    // Initial data
+    let id = Array.from(data).length;
+    let firstWord = Synonym(id, "1112Wash312", 4, "Clean");
+    let secondWord = Synonym(id + 1, "Clean3", 4, "Wash");
+
+    let result;
+    result = [
         ...data,
         firstWord,
         secondWord
-    }
-    const result = Object.assign({}, {data}, {firstWord}, {secondWord})
-    console.log(this.data);
+    ];
+    console.log(result);
+    fs.writeFile('./data/data.json', JSON.stringify(result), (err, ) => {
+
+        if (err) throw  err;
+        console.log('DONE');
+    })
     //console.log(JSON.stringify(firstWord) + ',' + JSON.stringify(secondWord));
     //console.log(JSON.stringify(data).substr(1, JSON.stringify(data).length - 2));
-
+    res.send(result)
 });
 
 
