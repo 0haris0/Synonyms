@@ -14,14 +14,20 @@ app.use(cors());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 
-const isExisting = (Synonym) => {
-    Array.from(data).map((value) => {
-        if (value.word.toUpperCase === Synonym.toUpperCase) {
-            return true;
-        } else {
-            return value;
-        }
-    });
+const isExisting = (Synonym, secondSynonym) => {
+    let isExisting = false;
+    if (Array.from(data).length > 1) {
+        Array.from(data).map((value) => {
+            if ((value.word.toUpperCase() === Synonym.toUpperCase() || value.word.toUpperCase() === secondSynonym.toUpperCase()) && (value.synonyms.includes(Synonym) || (value.synonyms.includes(secondSynonym)))) {
+                isExisting = true;
+            } else {
+                isExisting = false;
+            }
+        });
+    } else {
+        isExisting = isExisting;
+    }
+    return isExisting;
 }
 
 const Synonym = (id, word, key, synonyms) => {
@@ -179,21 +185,86 @@ app.post('/word/add/', (req, res,) => {
 
     // Initial data
     let id = Array.from(data).length;
-    let firstWord = Synonym(id, "1112Wash312", 4, "Clean");
-    let secondWord = Synonym(id + 1, "Clean3", 4, "Wash");
+    let firstWordInput = "Clean";
+    let secondWordInput = "Washing";
 
+    let firstWord = Synonym(id, firstWordInput, 4, secondWordInput);
+    let secondWord = Synonym(id + 1, secondWordInput, 4, firstWordInput);
     let result;
-    result = [
-        ...data,
-        firstWord,
-        secondWord
-    ];
-    console.log(result);
-    fs.writeFile('./data/data.json', JSON.stringify(result), (err, ) => {
+    let FilteredDataArray = [];
+
+    //Check is in Database - is duplicated?
+    let isInDatabase = isExisting(firstWord.word, secondWord.word)
+    if (isInDatabase) {
+        res.status(400).send({error: "There is already both words in database!"});
+        return;
+    }
+
+    //If only one in database and is anything in database
+    if (Array.from(data).length > 1) {
+        FilteredDataArray = Array.from(data).filter((value, key) => {
+                if ((value.word === firstWord.word) || (value.word === secondWord.word)) {
+                    return (value);
+                }
+            }
+        );
+    }
+
+    // If there isn't that synonyms in database
+    if (FilteredDataArray.length === 0) {
+        result = [
+            ...data,
+            firstWord,
+            secondWord
+        ];
+
+    } else if(FilteredDataArray.length === 1){ // If there is already one synonym in database
+        let newData = Object.values(data).filter(((value, index) => {
+          if(value === FilteredDataArray[0]){
+              if(!value.synonyms.includes(FilteredDataArray[0].word)){
+                  return(value.synonyms.push(secondWordInput));
+              }else{
+                  return (value);
+              }
+          }else{
+              return (value);
+          }
+        }))
+        //sFilteredDataArray[0].synonyms.push(secondWordInput);
+        result = [
+            ...newData,
+
+        ]
+    }
+
+    else {
+        let items = [];
+        //Check from Filtered data which is already in database, and add it to their synonym
+        if (FilteredDataArray.map((value, key) => {
+            if (value.word.toUpperCase() === firstWord.word.toUpperCase()) {
+                value.synonyms.push(firstWord.word);
+            } else if (value.word.toUpperCase() === firstWord.word.toUpperCase()) {
+                value.synonyms.push(secondWord.word);
+            }
+            items.push(value);
+            console.log('ITEM: ', items);
+        }))
+            console.log('ITEMS: ', ...items);
+        console.log(FilteredDataArray, 'filtered');
+        result = [
+            ...data,
+            ...items
+        ]
+        res.send(result);
+    }
+    //Write to file whole object
+    fs.writeFile('./data/data.json', JSON.stringify(result), (err,) => {
 
         if (err) throw  err;
-        console.log('DONE');
-    })
+    });
+
+    ///console.log(result);
+
     //console.log(JSON.stringify(firstWord) + ',' + JSON.stringify(secondWord));
     //console.log(JSON.stringify(data).substr(1, JSON.stringify(data).length - 2));
     res.send(result)

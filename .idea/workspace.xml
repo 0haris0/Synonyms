@@ -461,7 +461,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.Endpoints tester">
+  <component name="RunManager" selected="npm.Backend">
     <configuration name="rest-api#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -515,6 +515,7 @@
       <workItem from="1603264704115" duration="828000" />
       <workItem from="1603320734105" duration="38762000" />
       <workItem from="1603504632201" duration="9832000" />
+      <workItem from="1603609519905" duration="23074000" />
     </task>
     <task id="LOCAL-00001" summary="Added option to search synonyms">
       <created>1602918014006</created>
@@ -530,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603415350086</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Save data to JSON   without validation">
+      <created>1603609701732</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603609701732</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +559,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added option to search synonyms" />
     <MESSAGE value="Working on new function for adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on new function for adding" />
+    <MESSAGE value="Save data to JSON   without validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save data to JSON   without validation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -560,6 +569,30 @@
           <url>vmscript://file://C:/Users/haris/Desktop/Projects/Synonyms/backend/index.js</url>
           <line>67</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/index.js</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/index.js</url>
+          <line>242</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/index.js</url>
+          <line>220</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/index.js</url>
+          <line>221</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
