@@ -14,28 +14,29 @@ app.use(cors());
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 
+//Function is Existing synonym in DB
 const isExisting = (Synonym, secondSynonym) => {
     let isExisting = false;
-    if (Array.from(data).length > 1) {
-        Array.from(data).map((value) => {
+    if (Array.from(data).length > 1) { //If have data
+        Array.from(data).map((value) => { // Go through that data
+            //If FirstWord and SecondWord defined as `word` or in array `synonyms`
             if ((value.word.toUpperCase() === Synonym.toUpperCase() || value.word.toUpperCase() === secondSynonym.toUpperCase()) && (value.synonyms.includes(Synonym) || (value.synonyms.includes(secondSynonym)))) {
                 isExisting = true;
             } else {
                 isExisting = false;
             }
         });
-    } else {
-        isExisting = isExisting;
     }
     return isExisting;
 }
 
+//Create object Synonym
 const Synonym = (id, word, key, synonyms) => {
     this.id = id;
     this.word = word;
     this.key = key;
     this.synonyms = Array.of(synonyms);
-    let obj = new Object;
+    let obj = {};
     obj.ID = this.id;
     obj.word = this.word;
     obj.key = this.key;
@@ -43,151 +44,45 @@ const Synonym = (id, word, key, synonyms) => {
     return obj;
 };
 
-
-Object.defineProperties(Synonym, {
-    'ID': {
-        get: () => {
-            return Array.from(data).length
-        }
-    },
-    'word': {
-        get: () => {
-            return this.word
-        }
-    },
-    'key': {
-        get: () => {
-            return this.key
-        }
-    },
-    'synonyms': {
-        get: () => {
-            return Array.of(this.synonyms);
-        }
-    }
-})
-
-function fillSynonym(DataArray, FirstWord, SecondWord) {
-    let synonym = {
-        "ID": null,
-        "word": null,
-        "key": null,
-        "synonyms": []
-    };
-    let invertedSynonym = {
-        "ID": null,
-        "word": null,
-        "key": null,
-        "synonyms": []
-    }
-    let bothSynonyms = [];
-
-    synonym["ID"] = DataArray.lastIndexOf(DataArray);
-    synonym["word"] = FirstWord;
-    synonym["key"] = 1;
-    synonym["synonyms"].push(SecondWord);
-
-    invertedSynonym["ID"] = DataArray.lastIndexOf(DataArray);
-    invertedSynonym["word"] = SecondWord;
-    invertedSynonym["key"] = 1;
-    invertedSynonym["synonyms"].push(FirstWord);
-
-
-    bothSynonyms.push(synonym)
-    bothSynonyms.push(invertedSynonym);
-    return (Object.values(bothSynonyms));
-}
-
+//Just skip home endpoint
 app.get('/', (req, res, next) => {
     next();
-})
+});
+
+//For getting /word/ endpoint, return 404
 app.get('/word/', (req, res, next) => {
     res.sendStatus(404);
     next();
 });
 
+//Return array of synonyms connected with it
 app.get('/word/:search', (req, res, next) => {
     let result = [];
-    data.map((value) => {
-        if (value.word.toUpperCase().includes(req.params.search.toUpperCase())) {
-            result.push(value);
+    data.map((value) => { //Go through every item in DB
+        if (value.word.toUpperCase().includes(req.params.search.toUpperCase())) { //If `word` from DB include parameter from search
+            result.push(value); //Push result into array
         }
     });
-    if (result.length > 0) {
-        res.send(result);
+    if (result.length > 0) { // If result is empty (Not found search query)
+        res.status(404).send({error: "Result not found"});
     } else {
-        res.send(result);
+        res.status(200).send(result);
     }
     next();
 });
 
-app.post('/word/add/', (req, res,) => {
-    /*console.log('Parametri: ', JSON.parse(req.body));
-    let firstWord = req.params.firstWord;♠
-    let secondWord = req.params.secondWord;
-    if (firstWord === undefined || secondWord === undefined) {
-        res.status(400).send({error: "Please enter both words"});
-    } else {
-        let alreadyHave = isExisting(firstWord);
-        let alreadyHaveSecond = isExisting(secondWord);
-        if (alreadyHave && alreadyHaveSecond) {
-            res.status(400).send({error: "There is already both words in database!"});
-        }
-
-    let synonym = {
-        "ID": null,
-        "word": null,
-        "key": null,
-        synonyms: []
-    };
-    let firstWord = "Clean";
-    let secondWord = "Wash";
-
-    let DataArray ;
-    DataArray= Array.from(JSON.stringify(data) + JSON.stringify(fillSynonym(DataArray,firstWord,secondWord)));
-    //DataArray.push(fillSynonym(DataArray,firstWord,secondWord));
-    console.log(Array.from(DataArray), 'data Array');
-
-    let FilteredDataArray = Array.from(DataArray).filter((value) => (value.word === firstWord) || (value.word === secondWord));
-    // If not in database
-    if (FilteredDataArray.length === 0) {
-
-        let newData = fillSynonym(DataArray,firstWord,secondWord);
-        fs.appendFile('./data/data.json', newData, (err, ) => {
-
-            if (err) throw  err;
-            console.log('DONE');
-        })
-    } else if (FilteredDataArray.length > 0) {
-
-        console.log('test');
-        res.send('test', 405);
-    }
-    /* let ovaj = fs.readFile('./data/data.json', synonym.toString(), ( err => {
-         if (err)
-             console.log(err);
-         res.send(test);
-
-     }));
-}
-/*
-        // If there is already that word in database
-        test.map((value, key) => {
-            if (value.word === firstWord || secondWord) { //Check is these word in database already
-                if (value.synonyms.includes(firstWord || secondWord))
-                    res.send({error: 'There is already that synonym'});
-                else {
-                    res.send('test')
-                }
-            }
-        });
-*/
+app.post('/word/add/', (req, res, next) => {
 
     // Initial data
-    let id = Array.from(data).length;
-    let firstWordInput = "Clean";
-    let secondWordInput = "Washing";
 
+    // Fetch ID (last from DB)
+    let id = Array.from(data).length;
+
+    // Post data (firstWord, secondWord)
+    let firstWordInput = req.body.firstWord;
+    let secondWordInput = req.body.secondWord;
+
+    //Create object from POSTed data
     let firstWord = Synonym(id, firstWordInput, 4, secondWordInput);
     let secondWord = Synonym(id + 1, secondWordInput, 4, firstWordInput);
     let result;
@@ -218,56 +113,51 @@ app.post('/word/add/', (req, res,) => {
             secondWord
         ];
 
-    } else if(FilteredDataArray.length === 1){ // If there is already one synonym in database
+    } else if (FilteredDataArray.length === 1) { // If there is already one synonym in database
         let newData = Object.values(data).filter(((value, index) => {
-          if(value === FilteredDataArray[0]){
-              if(!value.synonyms.includes(FilteredDataArray[0].word)){
-                  return(value.synonyms.push(secondWordInput));
-              }else{
-                  return (value);
-              }
-          }else{
-              return (value);
-          }
-        }))
-        //sFilteredDataArray[0].synonyms.push(secondWordInput);
+            // if object of filtered data is same as data from `DB`
+            if (value === FilteredDataArray[0]) {
+                // If data row doesn't have synonym into "Connecting array"
+                if (!value.synonyms.includes(FilteredDataArray[0].word)) {
+                    // Return that data row with pushed synonim into "Connecting array"
+                    return (value.synonyms.push(secondWordInput));
+                } else {
+                    return (value);
+                }
+            } else {
+                return (value);
+            }
+        }));
+
         result = [
-            ...newData,
-
+            ...newData
         ]
-    }
 
-    else {
+    } else {
         let items = [];
         //Check from Filtered data which is already in database, and add it to their synonym
         if (FilteredDataArray.map((value, key) => {
-            if (value.word.toUpperCase() === firstWord.word.toUpperCase()) {
-                value.synonyms.push(firstWord.word);
-            } else if (value.word.toUpperCase() === firstWord.word.toUpperCase()) {
-                value.synonyms.push(secondWord.word);
+            if (value.word.toUpperCase() === firstWord.word.toUpperCase()) { // Check is items from Array same as our "First" word
+                value.synonyms.push(secondWord.word); // If it is, then push
+            } else {
+                value.synonyms.push(firstWord.word); // If not then, it's second word.
             }
             items.push(value);
-            console.log('ITEM: ', items);
         }))
-            console.log('ITEMS: ', ...items);
-        console.log(FilteredDataArray, 'filtered');
-        result = [
-            ...data,
-            ...items
-        ]
+            result = [
+                ...data,
+                ...items
+            ]
         res.send(result);
     }
+
     //Write to file whole object
     fs.writeFile('./data/data.json', JSON.stringify(result), (err,) => {
 
-        if (err) throw  err;
+        if (err) throw  res.send(err);
+
     });
-
-    ///console.log(result);
-
-    //console.log(JSON.stringify(firstWord) + ',' + JSON.stringify(secondWord));
-    //console.log(JSON.stringify(data).substr(1, JSON.stringify(data).length - 2));
-    res.send(result)
+    next();
 });
 
 

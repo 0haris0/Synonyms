@@ -6,6 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6558b866-e12b-44c6-8a20-160a7f6b6903" name="Default Changelist" comment="Added option to search synonyms">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/_template__of_NodeJSConfigurationType.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/_template__of_NodeJSConfigurationType.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/_template__of_js_build_tools_npm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/_template__of_js_build_tools_npm.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/data/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
@@ -24,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/frontend/node_modules/react-dev-utils/WebpackDevServerUtils.js" root0="FORCE_HIGHLIGHTING" />
@@ -43,6 +46,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.18.4" />
+    <property name="javascript.nodejs.core.library.typings.version" value="12.19.3" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/App.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -55,12 +60,29 @@
     <property name="rest.client.default.execution.environment" value="dev" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="service.view.auto.scroll.to.source" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:3001/word/add/" />
+          <option name="urlPath" value="" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Content-Type" />
+                <option name="value" value="application/json" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="haveTextToSend" value="true" />
+          <option name="textToSend" value="{&#10;  &quot;firstWord&quot;: &quot;Das123&quot;,&#10;  &quot;secondWord&quot;: &quot;DASS1234&quot;&#10;}" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="httpMethod" value="POST" />
           <option name="urlBase" value="http://localhost:3001/word/add/" />
@@ -462,6 +484,9 @@
     </option>
   </component>
   <component name="RunManager" selected="npm.Backend">
+    <configuration name="All in rest-api" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http">
+      <method v="2" />
+    </configuration>
     <configuration name="rest-api#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -474,29 +499,20 @@
       </EXTENSION>
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/backend/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Attach to Node.js/Chrome.Page" />
       <item itemvalue="HTTP Request.Endpoints tester" />
       <item itemvalue="HTTP Request.rest-api#1" />
+      <item itemvalue="HTTP Request.All in rest-api" />
       <item itemvalue="Node.js.index.js" />
       <item itemvalue="npm.Frontend" />
       <item itemvalue="npm.Backend" />
-      <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.index.js" />
         <item itemvalue="HTTP Request.rest-api#1" />
+        <item itemvalue="Node.js.index.js" />
+        <item itemvalue="HTTP Request.All in rest-api" />
       </list>
     </recent_temporary>
   </component>
@@ -516,6 +532,8 @@
       <workItem from="1603320734105" duration="38762000" />
       <workItem from="1603504632201" duration="9832000" />
       <workItem from="1603609519905" duration="23074000" />
+      <workItem from="1604540987429" duration="729000" />
+      <workItem from="1604809891741" duration="3854000" />
     </task>
     <task id="LOCAL-00001" summary="Added option to search synonyms">
       <created>1602918014006</created>
@@ -572,27 +590,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/backend/index.js</url>
-          <line>21</line>
+          <line>159</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/backend/index.js</url>
-          <line>242</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/backend/index.js</url>
-          <line>220</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/backend/index.js</url>
-          <line>221</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
