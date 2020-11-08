@@ -63,7 +63,7 @@ app.get('/word/:search', (req, res, next) => {
             result.push(value); //Push result into array
         }
     });
-    if (result.length > 0) { // If result is empty (Not found search query)
+    if (result.length < 1) { // If result is empty (Not found search query)
         res.status(404).send({error: "Result not found"});
     } else {
         res.status(200).send(result);
@@ -82,6 +82,10 @@ app.post('/word/add/', (req, res, next) => {
     let firstWordInput = req.body.firstWord;
     let secondWordInput = req.body.secondWord;
 
+    if (firstWordInput === null && secondWordInput === null) {
+        res.status(400).send({"error": 'Please enter words!'});
+    }
+
     //Create object from POSTed data
     let firstWord = Synonym(id, firstWordInput, 4, secondWordInput);
     let secondWord = Synonym(id + 1, secondWordInput, 4, firstWordInput);
@@ -92,7 +96,6 @@ app.post('/word/add/', (req, res, next) => {
     let isInDatabase = isExisting(firstWord.word, secondWord.word)
     if (isInDatabase) {
         res.status(400).send({error: "There is already both words in database!"});
-        return;
     }
 
     //If only one in database and is anything in database
@@ -148,19 +151,25 @@ app.post('/word/add/', (req, res, next) => {
                 ...data,
                 ...items
             ]
-        res.send(result);
     }
 
     //Write to file whole object
-    fs.writeFile('./data/data.json', JSON.stringify(result), (err,) => {
+    fs.writeFile('.././data/data.json', JSON.stringify(result), (err,) => {
 
-        if (err) throw  res.send(err);
+        if (!err) {
+            res.status(201).send({message: 'Synonyms added successfully!'});
+        } else {
+            throw err;
+        }
+
 
     });
-    next();
+
 });
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+
 })
+
+module.exports = app;

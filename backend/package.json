@@ -10,11 +10,19 @@
     "mongodb": "^3.6.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.4",
+    "supertest": "^6.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "scripts": {
     "start": "./node_modules/.bin/nodemon -w index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC"
