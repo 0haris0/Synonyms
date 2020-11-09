@@ -1,3 +1,63 @@
+.search-field {
+  &:before {
+    display: block;
+    content: "";
+    border-top: 1px solid #000;
+    opacity: 0.7;
+    width: 75%;
+    margin-bottom: 20px;
+  }
+}
+
+.sidebar-popup {
+  &:before {
+
+    display: block;
+    content: "";
+    border-top: 1px solid #000;
+    opacity: 0.7;
+    width: 75%;
+    margin-left: 25%;
+    margin-bottom: 20px;
+  }
+
+  .large-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    &:after {
+      content: "";
+      display: block;
+      border-bottom: 1px solid #000;
+      width: 75%;
+      margin-left: 25%;
+      opacity: 0.6;
+
+      &:after {
+        clear: both;
+      }
+    }
+  }
+
+  .small-title-desc {
+    font-size: 14px;
+    text-align: right;
+    font-style: italic;
+  }
+}
+
+.adding-button {
+  &:after {
+    display: block;
+    content: "";
+    border-top: 1px solid #000;
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+}
+
 @import "~bootstrap/scss/bootstrap";
 
 @import "components/SearchBar/SearchBar.scss";
+@import "components/AddSynonym/AddSynonym.scss";
